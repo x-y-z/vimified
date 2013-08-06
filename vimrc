@@ -93,6 +93,25 @@ if count(g:vimified_packages, 'general')
     nmap <leader>be :EasyBufferToggle<enter>
 
     Bundle 'terryma/vim-multiple-cursors'
+
+    Bundle 'vim-scripts/minibufexpl.vim'
+
+    """"""""""""""""""""""""""""""
+    " => Minibuffer plugin
+    """"""""""""""""""""""""""""""
+    let g:miniBufExplModSelTarget = 1
+    let g:miniBufExplorerMoreThanOne = 2
+    let g:miniBufExplModSelTarget = 1
+    let g:miniBufExplUseSingleClick = 1
+    let g:miniBufExplMapWindowNavVim = 0
+    let g:miniBufExplHSplit = 10
+    let g:miniBufExplSplitAbove=1
+
+    autocmd BufRead,BufNew :call UMiniBufExplorer
+
+    map <leader>u :TMiniBufExplorer<cr>
+
+
 endif
 " }}}
 
@@ -295,10 +314,10 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " You want to be part of the gurus? Time to get in serious stuff and stop using
 " arrow keys.
-noremap <left> <nop>
+noremap <left> :bp<cr>
 noremap <up> <nop>
 noremap <down> <nop>
-noremap <right> <nop>
+noremap <right> :bn<cr>
 
 " Yank from current cursor position to end of line
 map Y y$
@@ -384,9 +403,10 @@ set noswapfile
 
 set modelines=0
 set noeol
-if exists('+relativenumber')
-  set relativenumber
-endif
+"if exists('+relativenumber')
+  "set relativenumber
+"endif
+set number
 set numberwidth=3
 set winwidth=83
 set ruler
@@ -469,6 +489,7 @@ nnoremap / /\v
 vnoremap / /\v
 
 set ignorecase
+set incsearch
 set smartcase
 set showmatch
 set gdefault
