@@ -51,6 +51,7 @@ endif
 
 " _. General {{{
 if count(g:vimified_packages, 'general')
+    Bundle 'vim-scripts/c.vim'
     Bundle "mileszs/ack.vim"
     nnoremap <leader>a :Ack!<space>
 
@@ -208,7 +209,6 @@ endif
 " _. Clang {{{
 if count(g:vimified_packages, 'clang')
     Bundle 'LucHermitte/vim-clang'
-    Bundle 'vim-scripts/c.vim'
 endif
 " }}}
 
@@ -563,7 +563,7 @@ vmap <C-Down> ]egv
 
 " . folding {{{
 
-set foldlevelstart=0
+set foldlevelstart=20
 set foldmethod=syntax
 
 " Space to toggle folds.
