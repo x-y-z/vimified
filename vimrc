@@ -6,6 +6,7 @@
 "
 "
 set nocompatible
+filetype on
 filetype off
 
 " Load external configuration before anything else {{{
@@ -52,8 +53,12 @@ endif
 " _. General {{{
 if count(g:vimified_packages, 'general')
     Bundle 'vim-scripts/c.vim'
-    Bundle "mileszs/ack.vim"
-    nnoremap <leader>a :Ack!<space>
+    "Bundle "mileszs/ack.vim"
+    "nnoremap <leader>a :Ack!<space>
+    Bundle 'editorconfig/editorconfig-vim'
+
+    Bundle 'rking/ag.vim'
+    nnoremap <leader>a :Ag -i<space>
 
     Bundle 'matthias-guenther/hammer.vim'
     nmap <leader>p :Hammer<cr>
@@ -72,6 +77,8 @@ if count(g:vimified_packages, 'general')
     " Disable the scrollbars (NERDTree)
     set guioptions-=r
     set guioptions-=L
+    " Keep NERDTree window fixed between multiple toggles
+    set winfixwidth
 
 
     Bundle 'kana/vim-textobj-user'
@@ -282,7 +289,12 @@ if count(g:vimified_packages, 'color')
     Bundle 'Elive/vim-colorscheme-elive'
     Bundle 'zeis/vim-kolor'
 
-    colorscheme molokai
+    " During installation the molokai colorscheme might not be avalable
+    if filereadable(globpath(&rtp, 'colors/molokai.vim'))
+      colorscheme molokai
+    else
+      colorscheme default
+    endif
 else
     colorscheme default
 endif

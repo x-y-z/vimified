@@ -16,7 +16,19 @@ create_symlinks () {
 echo "Welcome friend!"
 echo "You are about to be vimified. Ready? Let us do the stuff for you."
 
-if [ ! -d "$INSTALLDIR/.vimified" ]; then
+which git > /dev/null
+if [ "$?" != "0" ]; then
+  echo "You need git installed to install vimified."
+  exit 1
+fi
+
+which vim > /dev/null
+if [ "$?" != "0" ]; then
+  echo "You need vim installed to install vimified."
+  exit 1
+fi
+
+if [ ! -d "$INSTALLDIR/vimified" ]; then
     echo "As we can't find Vimified in the current directory, we will create it."
     git clone git://github.com/x-y-z/vimified.git $INSTALLDIR/.vimified
     create_symlinks
