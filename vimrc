@@ -161,6 +161,7 @@ if count(g:vimified_packages, 'coding')
     Bundle 'majutsushi/tagbar'
     nmap <leader>t :TagbarToggle<CR>
 
+    Bundle 'chazy/cscope_maps'
     Bundle 'gregsexton/gitv'
 
     Bundle 'scrooloose/nerdcommenter'
