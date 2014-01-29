@@ -57,12 +57,12 @@ endif
 " _. General {{{
 if count(g:vimified_packages, 'general')
     Bundle 'vim-scripts/c.vim'
-    "Bundle "mileszs/ack.vim"
-    "nnoremap <leader>a :Ack!<space>
+    Bundle "mileszs/ack.vim"
+    nnoremap <leader>a :Ack!<space>
     Bundle 'editorconfig/editorconfig-vim'
 
-    Bundle 'rking/ag.vim'
-    nnoremap <leader>a :Ag -i<space>
+    "Bundle 'rking/ag.vim'
+    "nnoremap <leader>a :Ag -i<space>
 
     Bundle 'matthias-guenther/hammer.vim'
     nmap <leader>p :Hammer<cr>
@@ -187,6 +187,7 @@ if count(g:vimified_packages, 'coding')
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=1
     let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
+    let g:syntastic_cpp_compiler = executable('clang++') ? 'clang++' : 'g++'
 
     " --
 
