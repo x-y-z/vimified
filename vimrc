@@ -56,7 +56,7 @@ endif
 
 " _. General {{{
 if count(g:vimified_packages, 'general')
-    Bundle 'vim-scripts/c.vim'
+    "Bundle 'vim-scripts/c.vim'
     Bundle "mileszs/ack.vim"
     nnoremap <leader>a :Ack!<space>
     Bundle 'editorconfig/editorconfig-vim'
@@ -169,6 +169,8 @@ if count(g:vimified_packages, 'coding')
     Bundle 'chazy/cscope_maps'
     Bundle 'gregsexton/gitv'
 
+    Bundle 'joonty/vdebug.git'
+
     Bundle 'scrooloose/nerdcommenter'
     nmap <leader># :call NERDComment(0, "invert")<cr>
     vmap <leader># :call NERDComment(0, "invert")<cr>
@@ -222,7 +224,11 @@ endif
 
 " _. Clang {{{
 if count(g:vimified_packages, 'clang')
+    Bundle 'Rip-Rip/clang_complete'
+    Bundle 'LucHermitte/clang_indexer'
+    Bundle 'newclear/lh-vim-lib'
     Bundle 'LucHermitte/vim-clang'
+    Bundle 'devx/c.vim'
 endif
 " }}}
 
