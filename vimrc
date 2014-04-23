@@ -56,6 +56,7 @@ endif
 
 " _. General {{{
 if count(g:vimified_packages, 'general')
+    Bundle 'devx/c.vim'
     "Bundle 'vim-scripts/c.vim'
     Bundle "mileszs/ack.vim"
     nnoremap <leader>a :Ack!<space>
