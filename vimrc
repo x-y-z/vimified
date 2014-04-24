@@ -124,7 +124,16 @@ if count(g:vimified_packages, 'general')
 
     map <leader>u :TMiniBufExplorer<cr>
 
-    nmap <leader>it :r !date +'\%F \%T'<enter>
+    nnoremap <leader>it m'A<C-R>=" ".strftime('%Y-%m-%d %H:%M:%S')<CR><Esc>``
+
+    "nnoremap <F8> :call GetDate('')<CR>
+    "function! GetDate(format)
+      "let format = empty(a:format) ? '+%F %T' : a:format
+      "let cmd = '/bin/date ' . shellescape(format)
+      "let result = substitute(system(cmd), '[\]\|[[:cntrl:]]', '', 'g')
+       "Append space + result to current line without moving cursor.
+      "call setline(line('.'), getline('.') . ' ' . result)
+    "endfunction
 
 endif
 " }}}
