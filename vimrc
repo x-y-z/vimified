@@ -124,6 +124,7 @@ if count(g:vimified_packages, 'general')
 
     map <leader>u :TMiniBufExplorer<cr>
 
+    nmap <leader>it :r !date +'\%F \%T'<enter>
 
 endif
 " }}}
