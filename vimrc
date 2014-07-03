@@ -56,6 +56,9 @@ endif
 
 " _. General {{{
 if count(g:vimified_packages, 'general')
+    Bundle 'mbbill/undotree'
+    map <leader>u :UndotreeToggle<cr>
+
     Bundle 'devx/c.vim'
     "Bundle 'vim-scripts/c.vim'
     Bundle "mileszs/ack.vim"
@@ -122,7 +125,7 @@ if count(g:vimified_packages, 'general')
 
     autocmd BufRead,BufNew :call UMiniBufExplorer
 
-    map <leader>u :TMiniBufExplorer<cr>
+    "map <leader>u :TMiniBufExplorer<cr>
 
     nnoremap <leader>it m'A<C-R>=" ".strftime('%Y-%m-%d %H:%M:%S')<CR><Esc>``
 
