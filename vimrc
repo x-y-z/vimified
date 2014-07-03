@@ -61,12 +61,12 @@ if count(g:vimified_packages, 'general')
 
     Bundle 'devx/c.vim'
     "Bundle 'vim-scripts/c.vim'
-    Bundle "mileszs/ack.vim"
-    nnoremap <leader>a :Ack!<space>
+    "Bundle 'mileszs/ack.vim'
+    "nnoremap <leader>a :Ack!<space>
     Bundle 'editorconfig/editorconfig-vim'
 
-    "Bundle 'rking/ag.vim'
-    "nnoremap <leader>a :Ag -i<space>
+    Bundle 'rking/ag.vim'
+    nnoremap <leader>a :Ag -i<space>
 
     Bundle 'matthias-guenther/hammer.vim'
     nmap <leader>p :Hammer<cr>
