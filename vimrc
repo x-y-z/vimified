@@ -467,7 +467,7 @@ set tabstop=4
 set softtabstop=4
 set textwidth=80
 set shiftwidth=4
-set expandtab
+"set expandtab
 set wrap
 set formatoptions=qrn1
 if exists('+colorcolumn')
