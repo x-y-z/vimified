@@ -9,13 +9,16 @@ set nocompatible
 filetype on
 filetype off
 
+let s:dotvim = fnamemodify(globpath(&rtp, 'vimified.dir'), ':p:h')
+
 " Utils {{{
-source ~/.vim/functions/util.vim
+exec ':so '.s:dotvim.'/functions/util.vim'
 " }}}
 
 " Load external configuration before anything else {{{
-if filereadable(expand("~/.vim/before.vimrc"))
-  source ~/.vim/before.vimrc
+let s:beforerc = expand(s:dotvim . '/before.vimrc')
+if filereadable(s:beforerc)
+    exec ':so ' . s:beforerc
 endif
 " }}}
 
@@ -23,7 +26,7 @@ let mapleader = ","
 let maplocalleader = "\\"
 
 " Local vimrc configuration {{{
-let s:localrc = expand($HOME . '/.vim/local.vimrc')
+let s:localrc = expand(s:dotvim . '/local.vimrc')
 if filereadable(s:localrc)
     exec ':so ' . s:localrc
 endif
@@ -38,9 +41,9 @@ endif
 " }}}
 
 " VUNDLE {{{
-let s:bundle_path=$HOME."/.vim/bundle/"
+let s:bundle_path=s:dotvim."/bundle/"
 execute "set rtp+=".s:bundle_path."vundle/"
-call vundle#rc()
+call vundle#rc(s:bundle_path)
 
 Bundle 'gmarik/vundle'
 " }}}
@@ -48,7 +51,7 @@ Bundle 'gmarik/vundle'
 " PACKAGES {{{
 
 " Install user-supplied Bundles {{{
-let s:extrarc = expand($HOME . '/.vim/extra.vimrc')
+let s:extrarc = expand(s:dotvim . '/extra.vimrc')
 if filereadable(s:extrarc)
     exec ':so ' . s:extrarc
 endif
@@ -71,7 +74,7 @@ if count(g:vimified_packages, 'general')
     Bundle 'matthias-guenther/hammer.vim'
     nmap <leader>p :Hammer<cr>
 
-    Bundle 'tsaleh/vim-align'
+    Bundle 'junegunn/vim-easy-align'
     Bundle 'tpope/vim-endwise'
     Bundle 'tpope/vim-repeat'
     Bundle 'tpope/vim-speeddating'
@@ -81,7 +84,6 @@ if count(g:vimified_packages, 'general')
     Bundle 'tpope/vim-eunuch'
 
     Bundle 'scrooloose/nerdtree'
-    nmap <C-i> :NERDTreeToggle<CR>
     " Disable the scrollbars (NERDTree)
     set guioptions-=r
     set guioptions-=L
@@ -93,7 +95,7 @@ if count(g:vimified_packages, 'general')
     Bundle 'vim-scripts/YankRing.vim'
     let g:yankring_replace_n_pkey = '<leader>['
     let g:yankring_replace_n_nkey = '<leader>]'
-    let g:yankring_history_dir = '~/.vim/tmp/'
+    let g:yankring_history_dir = s:dotvim.'/tmp/'
     nmap <leader>y :YRShow<cr>
 
     Bundle 'michaeljsmith/vim-indent-object'
@@ -106,7 +108,7 @@ if count(g:vimified_packages, 'general')
     Bundle 'vim-scripts/scratch.vim'
 
     Bundle 'troydm/easybuffer.vim'
-    nmap <leader>be :EasyBufferToggle<enter>
+    nmap <leader>be :EasyBufferToggle<cr>
 
     Bundle 'terryma/vim-multiple-cursors'
 
@@ -143,9 +145,9 @@ endif
 
 " _. Fancy {{{
 if count(g:vimified_packages, 'fancy')
-    call g:Check_defined('g:airline_left_sep', '')
-    call g:Check_defined('g:airline_right_sep', '')
-    call g:Check_defined('g:airline_branch_prefix', '')
+    "call g:Check_defined('g:airline_left_sep', '')
+    "call g:Check_defined('g:airline_right_sep', '')
+    "call g:Check_defined('g:airline_branch_prefix', '')
 
     Bundle 'bling/vim-airline'
 endif
@@ -193,8 +195,11 @@ if count(g:vimified_packages, 'coding')
     Bundle 'sjl/splice.vim'
 
     Bundle 'tpope/vim-fugitive'
+    nmap <leader>gs :Gstatus<CR>
+    nmap <leader>gc :Gcommit -v<CR>
+    nmap <leader>gac :Gcommit --amen -v<CR>
     nmap <leader>g :Ggrep
-    " ,f for global git serach for word under the cursor (with highlight)
+    " ,f for global git search for word under the cursor (with highlight)
     nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
     " same in visual mode
     :vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
@@ -212,8 +217,13 @@ if count(g:vimified_packages, 'coding')
 
     autocmd FileType gitcommit set tw=68 spell
     autocmd FileType gitcommit setlocal foldmethod=manual
+
+    " Check API docs for current word in Zeal: http://zealdocs.org/
+    nnoremap <leader>d :!zeal --query "<cword>"&<CR><CR>
 endif
 " }}}
+
+
 
 " _. Python {{{
 if count(g:vimified_packages, 'python')
@@ -221,6 +231,14 @@ if count(g:vimified_packages, 'python')
     Bundle 'python.vim'
     Bundle 'python_match.vim'
     Bundle 'pythoncomplete'
+    Bundle 'vim-virtualenv'
+endif
+" }}}
+
+" _. Go {{{
+if count(g:vimified_packages, 'go')
+    Bundle 'fatih/vim-go'
+    let g:go_disable_autoinstall = 1
 endif
 " }}}
 
@@ -258,6 +276,9 @@ if count(g:vimified_packages, 'html')
     au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+    au BufNewFile,BufReadPost *.md set filetype=markdown
+
+    let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 endif
 " }}}
 
@@ -303,6 +324,18 @@ endif
 " _. Elixir {{{
 if count(g:vimified_packages, 'elixir')
     Bundle 'elixir-lang/vim-elixir'
+endif
+" }}}
+
+" _. Rust {{{
+if count(g:vimified_packages, 'rust')
+    Bundle 'wting/rust.vim'
+endif
+" }}}
+
+" _. Elm {{{
+if count(g:vimified_packages, 'elm')
+    Bundle 'lambdatoast/elm.vim'
 endif
 " }}}
 
@@ -430,13 +463,16 @@ set ttimeoutlen=10
 
 " _ backups {{{
 if has('persistent_undo')
-  set undodir=~/.vim/tmp/undo//     " undo files
+  " undo files
+  exec 'set undodir='.s:dotvim.'/tmp/undo//'
   set undofile
   set undolevels=3000
   set undoreload=10000
 endif
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap//   " swap files
+" backups
+exec 'set backupdir='.s:dotvim.'/tmp/backup//'
+" swap files
+exec 'set directory='.s:dotvim.'/tmp/swap//'
 set backup
 set noswapfile
 " _ }}}
@@ -474,6 +510,7 @@ set formatoptions=qrn1
 if exists('+colorcolumn')
   set colorcolumn=+1
 endif
+set cpo+=J
 " }}}
 
 set visualbell
@@ -490,7 +527,7 @@ set dictionary=/usr/share/dict/words
 au FocusLost    * :silent! wall
 "
 " When vimrc is edited, reload it
-autocmd! BufWritePost vimrc source ~/.vimrc
+autocmd! BufWritePost vimrc source $MYVIMRC
 
 " }}}
 
@@ -565,10 +602,6 @@ nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'
 
 " Navigation & UI {{{
 
-" Begining & End of line in Normal mode
-noremap H ^
-noremap L g_
-
 " more natural movement with wrap on
 nnoremap j gj
 nnoremap k gk
@@ -599,6 +632,8 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+nmap <tab> :NERDTreeToggle<cr>
+
 " }}}
 
 " . folding {{{
@@ -622,7 +657,7 @@ nnoremap <leader>z zMzvzz
 " Quick editing {{{
 
 nnoremap <leader>ev <C-w>s<C-w>j:e $MYVIMRC<cr>
-nnoremap <leader>es <C-w>s<C-w>j:e ~/.vim/snippets/<cr>
+exec 'nnoremap <leader>es <C-w>s<C-w>j:e '.s:dotvim.'/snippets/<cr>'
 nnoremap <leader>eg <C-w>s<C-w>j:e ~/.gitconfig<cr>
 nnoremap <leader>ez <C-w>s<C-w>j:e ~/.zshrc<cr>
 nnoremap <leader>et <C-w>s<C-w>j:e ~/.tmux.conf<cr>
@@ -655,19 +690,19 @@ augroup END
 " EXTENSIONS {{{
 
 " _. Scratch {{{
-source ~/.vim/functions/scratch_toggle.vim
+exec ':so '.s:dotvim.'/functions/scratch_toggle.vim'
 " }}}
 
 " _. Buffer Handling {{{
-source ~/.vim/functions/buffer_handling.vim
+exec ':so '.s:dotvim.'/functions/buffer_handling.vim'
 " }}}
 
 " _. Tab {{{
-source ~/.vim/functions/insert_tab_wrapper.vim
+exec ':so '.s:dotvim.'/functions/insert_tab_wrapper.vim'
 " }}}
 
 " _. Text Folding {{{
-source ~/.vim/functions/my_fold_text.vim
+exec ':so '.s:dotvim.'/functions/my_fold_text.vim'
 " }}}
 
 " _. Gist {{{
@@ -678,18 +713,9 @@ vnoremap <leader>G :w !gist -p -t %:e \| pbcopy<cr>
 
 " }}}
 
-" TEXT OBJECTS {{{
-
-" Shortcut for [] motion
-onoremap ir i[
-onoremap ar a[
-vnoremap ir i[
-vnoremap ar a[
-
-" }}}
-
 " Load addidional configuration (ie to overwrite shorcuts) {{{
-if filereadable(expand("~/.vim/after.vimrc"))
-  source ~/.vim/after.vimrc
+let s:afterrc = expand(s:dotvim . '/after.vimrc')
+if filereadable(s:afterrc)
+    exec ':so ' . s:afterrc
 endif
 " }}}
