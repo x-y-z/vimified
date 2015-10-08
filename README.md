@@ -79,6 +79,10 @@ Available packages:
  * haskell
  * elixir
  * color
+ * python
+ * go
+ * elm
+ * rust
 
 ### General
 
@@ -135,7 +139,7 @@ eunuch.vim: helpers for UNIX
 
 A tree explorer plugin for vim.
 
-**Command:** `ctrl-u`
+**Command:** `Tab`
 
 #### [vim-textobj-user](https://github.com/kana/vim-textobj-user)
 
