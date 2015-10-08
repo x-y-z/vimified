@@ -62,6 +62,7 @@ if count(g:vimified_packages, 'general')
     Bundle 'mbbill/undotree'
     map <leader>u :UndotreeToggle<cr>
 
+	Bundle 'Valloric/YouCompleteMe'
     Bundle 'devx/c.vim'
     "Bundle 'vim-scripts/c.vim'
     "Bundle 'mileszs/ack.vim'
