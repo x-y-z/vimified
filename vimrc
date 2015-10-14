@@ -113,20 +113,20 @@ if count(g:vimified_packages, 'general')
 
     Bundle 'terryma/vim-multiple-cursors'
 
-    Bundle 'vim-scripts/minibufexpl.vim'
+    "Bundle 'vim-scripts/minibufexpl.vim'
 
     """"""""""""""""""""""""""""""
     " => Minibuffer plugin
     """"""""""""""""""""""""""""""
-    let g:miniBufExplModSelTarget = 1
-    let g:miniBufExplorerMoreThanOne = 2
-    let g:miniBufExplModSelTarget = 1
-    let g:miniBufExplUseSingleClick = 1
-    let g:miniBufExplMapWindowNavVim = 0
-    let g:miniBufExplHSplit = 10
-    let g:miniBufExplSplitAbove=1
+    "let g:miniBufExplModSelTarget = 1
+    "let g:miniBufExplorerMoreThanOne = 2
+    "let g:miniBufExplModSelTarget = 1
+    "let g:miniBufExplUseSingleClick = 1
+    "let g:miniBufExplMapWindowNavVim = 0
+    "let g:miniBufExplHSplit = 10
+    "let g:miniBufExplSplitAbove=1
 
-    autocmd BufRead,BufNew :call UMiniBufExplorer
+    "autocmd BufRead,BufNew :call UMiniBufExplorer
 
     "map <leader>u :TMiniBufExplorer<cr>
 
@@ -151,6 +151,7 @@ if count(g:vimified_packages, 'fancy')
     "call g:Check_defined('g:airline_branch_prefix', '')
 
     Bundle 'bling/vim-airline'
+	let g:airline#extensions#tabline#enabled = 1
 endif
 " }}}
 
@@ -352,8 +353,9 @@ if count(g:vimified_packages, 'color')
     Bundle 'zeis/vim-kolor'
 
     " During installation the molokai colorscheme might not be avalable
-    if filereadable(globpath(&rtp, 'colors/molokai.vim'))
-      colorscheme molokai
+    if filereadable(globpath(&rtp, 'colors/solarized.vim'))
+      set background=dark
+      colorscheme solarized
     else
       colorscheme default
     endif
