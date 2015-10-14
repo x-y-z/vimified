@@ -62,7 +62,9 @@ if count(g:vimified_packages, 'general')
     Bundle 'mbbill/undotree'
     map <leader>u :UndotreeToggle<cr>
 
+	Bundle 'rdnetto/YCM-Generator'
 	Bundle 'Valloric/YouCompleteMe'
+
     Bundle 'devx/c.vim'
     "Bundle 'vim-scripts/c.vim'
     "Bundle 'mileszs/ack.vim'
@@ -353,9 +355,9 @@ if count(g:vimified_packages, 'color')
     Bundle 'zeis/vim-kolor'
 
     " During installation the molokai colorscheme might not be avalable
-    if filereadable(globpath(&rtp, 'colors/solarized.vim'))
-      set background=dark
-      colorscheme solarized
+    if filereadable(globpath(&rtp, 'colors/molokai.vim'))
+	  set background=dark
+      colorscheme molokai
     else
       colorscheme default
     endif
