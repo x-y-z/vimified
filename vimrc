@@ -568,8 +568,6 @@ function TrimWhiteSpace()
   ''
 :endfunction
 
-set list listchars=trail:.,extends:>
-
 nnoremap <leader>w :call TrimWhiteSpace()<CR>
 "map! <F2> :call TrimWhiteSpace()<CR>
 
