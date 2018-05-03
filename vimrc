@@ -65,6 +65,8 @@ if count(g:vimified_packages, 'general')
 	Bundle 'rdnetto/YCM-Generator'
 	Bundle 'Valloric/YouCompleteMe'
 
+	let g:ycm_confirm_extra_conf = 0
+
     Bundle 'devx/c.vim'
     "Bundle 'vim-scripts/c.vim'
     "Bundle 'mileszs/ack.vim'
