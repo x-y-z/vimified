@@ -145,6 +145,10 @@ if count(g:vimified_packages, 'general')
       "call setline(line('.'), getline('.') . ' ' . result)
     "endfunction
 
+	Bundle "myusuf3/numbers.vim"
+	let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m', 'minibufexpl', 'nerdtree']
+	nnoremap <F3> :NumbersToggle<CR>
+
 endif
 " }}}
 
@@ -185,8 +189,10 @@ endif
 " _. Coding {{{
 
 if count(g:vimified_packages, 'coding')
-    Bundle 'majutsushi/tagbar'
-    nmap <leader>t :TagbarToggle<CR>
+    "Bundle 'majutsushi/tagbar'
+    "nmap <leader>t :TagbarToggle<CR>
+	Bundle "Yggdroot/LeaderF"
+	nmap <leader>t :LeaderfBufTagAll<CR>
 
     Bundle 'chazy/cscope_maps'
     Bundle 'gregsexton/gitv'
@@ -225,7 +231,8 @@ if count(g:vimified_packages, 'coding')
     autocmd FileType gitcommit setlocal foldmethod=manual
 
     " Check API docs for current word in Zeal: http://zealdocs.org/
-    nnoremap <leader>d :!zeal --query "<cword>"&<CR><CR>
+    " nnoremap <leader>d :!zeal --query "<cword>"&<CR><CR>
+
 endif
 " }}}
 
