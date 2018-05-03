@@ -572,10 +572,10 @@ augroup END
 "autocmd BufWritePre * :%s/\s\+$//e
 
 " Removes trailing spaces
-function TrimWhiteSpace()
-  %s/\s*$//
-  ''
-:endfunction
+"function TrimWhiteSpace()
+  "%s/\s*$//
+  "''
+":endfunction
 
 nnoremap <leader>w :call TrimWhiteSpace()<CR>
 "map! <F2> :call TrimWhiteSpace()<CR>
