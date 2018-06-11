@@ -67,7 +67,6 @@ if count(g:vimified_packages, 'general')
 
 	let g:ycm_confirm_extra_conf = 0
 
-    Bundle 'devx/c.vim'
     "Bundle 'vim-scripts/c.vim'
     "Bundle 'mileszs/ack.vim'
     "nnoremap <leader>a :Ack!<space>
@@ -274,7 +273,7 @@ if count(g:vimified_packages, 'clang')
     Bundle 'LucHermitte/clang_indexer'
     Bundle 'newclear/lh-vim-lib'
     Bundle 'LucHermitte/vim-clang'
-    Bundle 'devx/c.vim'
+    "Bundle 'devx/c.vim'
 endif
 " }}}
 
