@@ -67,7 +67,8 @@ if count(g:vimified_packages, 'general')
 
 	let g:ycm_confirm_extra_conf = 0
 
-	Bundle 'WolfgangMehner/c-support'
+	Bundle 'rstacruz/vim-closer'
+	"Bundle 'WolfgangMehner/c-support'
     "Bundle 'vim-scripts/c.vim'
     "Bundle 'mileszs/ack.vim'
     "nnoremap <leader>a :Ack!<space>
@@ -84,6 +85,7 @@ if count(g:vimified_packages, 'general')
     Bundle 'tpope/vim-repeat'
     Bundle 'tpope/vim-speeddating'
     Bundle 'tpope/vim-surround'
+    let g:surround_{char2nr("c")} = "/* \r */"
     Bundle 'tpope/vim-unimpaired'
     Bundle 'maxbrunsfeld/vim-yankstack'
     Bundle 'tpope/vim-eunuch'
