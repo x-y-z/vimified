@@ -30,7 +30,7 @@ fi
 
 if [ ! -d "$INSTALLDIR/.vimified" ]; then
     echo "As we can't find Vimified in the current directory, we will create it."
-    git clone git://github.com/x-y-z/vimified.git $INSTALLDIR/.vimified
+    git clone git@github.com:x-y-z/vimified.git $INSTALLDIR/.vimified
     create_symlinks
     cd $INSTALLDIR/.vimified
 
@@ -47,9 +47,11 @@ if [ ! -d "bundle" ]; then
     mkdir -p tmp/backup tmp/swap tmp/undo
 fi
 
-if [ ! -d "bundle/vundle" ]; then
-    echo "Then, we install Vundle (https://github.com/gmarik/vundle)."
-    git clone https://github.com/gmarik/vundle.git bundle/vundle
+if [ ! -d "autoload" ]; then
+    echo "Then, we install Vim plug (https://github.com/junegunn/vim-plug)."
+	git clone https://github.com/junegunn/vim-plug.git autoload
+	#curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+		#https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 if [ ! -f local.vimrc ]; then
@@ -65,5 +67,5 @@ echo "At last, and before all, read the documentation: http://zaiste.github.com/
 
 echo "Enjoy!"
 
-vim +BundleInstall +qall 2>/dev/null
+vim +PlugInstall +qall 2>/dev/null
 
