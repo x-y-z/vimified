@@ -41,16 +41,14 @@ endif
 " }}}
 
 " VUNDLE {{{
-let s:bundle_path=s:dotvim."/bundle/"
-execute "set rtp+=".s:bundle_path."vundle/"
-call vundle#rc(s:bundle_path)
+let s:bundle_path=s:dotvim."/plugged/"
+call plug#begin(s:bundle_path)
 
-Bundle 'gmarik/vundle'
 " }}}
 
 " PACKAGES {{{
 
-" Install user-supplied Bundles {{{
+" Install user-supplied Plugs {{{
 let s:extrarc = expand(s:dotvim . '/extra.vimrc')
 if filereadable(s:extrarc)
     exec ':so ' . s:extrarc
@@ -59,38 +57,44 @@ endif
 
 " _. General {{{
 if count(g:vimified_packages, 'general')
-    Bundle 'mbbill/undotree'
+    Plug 'mbbill/undotree'
     map <leader>u :UndotreeToggle<cr>
 
-	Bundle 'rdnetto/YCM-Generator'
-	Bundle 'Valloric/YouCompleteMe'
+	Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+
+"function! BuildYCM(info)
+	"if a:info.status == 'installed' || a:info.force
+		"!./install.py
+	"endif
+"endfunction
+	Plug 'Valloric/YouCompleteMe'
 
 	let g:ycm_confirm_extra_conf = 0
 
-	Bundle 'rstacruz/vim-closer'
-	"Bundle 'WolfgangMehner/c-support'
-    "Bundle 'vim-scripts/c.vim'
-    "Bundle 'mileszs/ack.vim'
+	Plug 'rstacruz/vim-closer'
+	"Plug 'WolfgangMehner/c-support'
+    "Plug 'vim-scripts/c.vim'
+    "Plug 'mileszs/ack.vim'
     "nnoremap <leader>a :Ack!<space>
-    Bundle 'editorconfig/editorconfig-vim'
+    Plug 'editorconfig/editorconfig-vim'
 
-    Bundle 'rking/ag.vim'
+    Plug 'rking/ag.vim'
     nnoremap <leader>a :Ag -i<space>
 
-    Bundle 'matthias-guenther/hammer.vim'
-    nmap <leader>p :Hammer<cr>
+    "Plug 'matthias-guenther/hammer.vim'
+    "nmap <leader>p :Hammer<cr>
 
-    Bundle 'junegunn/vim-easy-align'
-    Bundle 'tpope/vim-endwise'
-    Bundle 'tpope/vim-repeat'
-    Bundle 'tpope/vim-speeddating'
-    Bundle 'tpope/vim-surround'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'tpope/vim-endwise'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-speeddating'
+    Plug 'tpope/vim-surround'
     let g:surround_{char2nr("c")} = "/* \r */"
-    Bundle 'tpope/vim-unimpaired'
-    Bundle 'maxbrunsfeld/vim-yankstack'
-    Bundle 'tpope/vim-eunuch'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'maxbrunsfeld/vim-yankstack'
+    Plug 'tpope/vim-eunuch'
 
-    Bundle 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree'
     " Disable the scrollbars (NERDTree)
     set guioptions-=r
     set guioptions-=L
@@ -98,28 +102,28 @@ if count(g:vimified_packages, 'general')
     set winfixwidth
 
 
-    Bundle 'kana/vim-textobj-user'
-    Bundle 'vim-scripts/YankRing.vim'
+    Plug 'kana/vim-textobj-user'
+    Plug 'vim-scripts/YankRing.vim'
     let g:yankring_replace_n_pkey = '<leader>['
     let g:yankring_replace_n_nkey = '<leader>]'
     let g:yankring_history_dir = s:dotvim.'/tmp/'
     nmap <leader>y :YRShow<cr>
 
-    Bundle 'michaeljsmith/vim-indent-object'
+    Plug 'michaeljsmith/vim-indent-object'
     let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
 
-    Bundle 'Spaceghost/vim-matchit'
-    Bundle 'ctrlpvim/ctrlp.vim'
+    Plug 'Spaceghost/vim-matchit'
+    Plug 'ctrlpvim/ctrlp.vim'
     let g:ctrlp_working_path_mode = ''
 
-    Bundle 'vim-scripts/scratch.vim'
+    Plug 'vim-scripts/scratch.vim'
 
-    Bundle 'troydm/easybuffer.vim'
+    Plug 'troydm/easybuffer.vim'
     nmap <leader>be :EasyBufferToggle<cr>
 
-    Bundle 'terryma/vim-multiple-cursors'
+    Plug 'terryma/vim-multiple-cursors'
 
-    "Bundle 'vim-scripts/minibufexpl.vim'
+    "Plug 'vim-scripts/minibufexpl.vim'
 
     """"""""""""""""""""""""""""""
     " => Minibuffer plugin
@@ -147,7 +151,7 @@ if count(g:vimified_packages, 'general')
       "call setline(line('.'), getline('.') . ' ' . result)
     "endfunction
 
-	Bundle "myusuf3/numbers.vim"
+	Plug 'myusuf3/numbers.vim'
 	let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m', 'minibufexpl', 'nerdtree']
 	nnoremap <F3> :NumbersToggle<CR>
 
@@ -160,14 +164,14 @@ if count(g:vimified_packages, 'fancy')
     "call g:Check_defined('g:airline_right_sep', '')
     "call g:Check_defined('g:airline_branch_prefix', '')
 
-    Bundle 'bling/vim-airline'
+    Plug 'bling/vim-airline'
 	let g:airline#extensions#tabline#enabled = 1
 endif
 " }}}
 
 " _. Indent {{{
 if count(g:vimified_packages, 'indent')
-  Bundle 'Yggdroot/indentLine'
+  Plug 'Yggdroot/indentLine'
   set list lcs=tab:\|\
   let g:indentLine_color_term = 111
   let g:indentLine_color_gui = '#DADADA'
@@ -179,8 +183,8 @@ endif
 
 " _. OS {{{
 if count(g:vimified_packages, 'os')
-    Bundle 'zaiste/tmux.vim'
-    Bundle 'benmills/vimux'
+    Plug 'zaiste/tmux.vim'
+    Plug 'benmills/vimux'
     map <Leader>rp :VimuxPromptCommand<CR>
     map <Leader>rl :VimuxRunLastCommand<CR>
 
@@ -191,24 +195,20 @@ endif
 " _. Coding {{{
 
 if count(g:vimified_packages, 'coding')
-    "Bundle 'majutsushi/tagbar'
-    "nmap <leader>t :TagbarToggle<CR>
-	Bundle "Yggdroot/LeaderF"
+	Plug 'Yggdroot/LeaderF'
 	nmap <leader>t :LeaderfBufTagAll<CR>
 
-    Bundle 'chazy/cscope_maps'
-    Bundle 'gregsexton/gitv'
+    Plug 'chazy/cscope_maps'
+    Plug 'gregsexton/gitv'
 
-    Bundle 'joonty/vdebug.git'
-
-    Bundle 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdcommenter'
     nmap <leader># :call NERDComment(0, "invert")<cr>
     vmap <leader># :call NERDComment(0, "invert")<cr>
 
-    " - Bundle 'msanders/snipmate.vim'
-    Bundle 'sjl/splice.vim'
+    " - Plug 'msanders/snipmate.vim'
+    Plug 'sjl/splice.vim'
 
-    Bundle 'tpope/vim-fugitive'
+    Plug 'tpope/vim-fugitive'
     nmap <leader>gs :Gstatus<CR>
     nmap <leader>gc :Gcommit -v<CR>
     nmap <leader>gac :Gcommit --amen -v<CR>
@@ -218,7 +218,7 @@ if count(g:vimified_packages, 'coding')
     " same in visual mode
     :vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
 
-    Bundle 'scrooloose/syntastic'
+    Plug 'scrooloose/syntastic'
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=1
     let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
@@ -227,7 +227,7 @@ if count(g:vimified_packages, 'coding')
 
     " --
 
-    Bundle 'vim-scripts/Reindent'
+    Plug 'vim-scripts/Reindent'
 
     autocmd FileType gitcommit set tw=68 spell
     autocmd FileType gitcommit setlocal foldmethod=manual
@@ -242,27 +242,27 @@ endif
 
 " _. Python {{{
 if count(g:vimified_packages, 'python')
-    Bundle 'klen/python-mode'
-    Bundle 'python.vim'
-    Bundle 'python_match.vim'
-    Bundle 'pythoncomplete'
-    Bundle 'jmcantrell/vim-virtualenv'
+    Plug 'klen/python-mode'
+    Plug 'python.vim'
+    Plug 'python_match.vim'
+    Plug 'pythoncomplete'
+    Plug 'jmcantrell/vim-virtualenv'
 endif
 " }}}
 
 " _. Go {{{
 if count(g:vimified_packages, 'go')
-    Bundle 'fatih/vim-go'
+    Plug 'fatih/vim-go'
     let g:go_disable_autoinstall = 1
 endif
 " }}}
 
 " _. Ruby {{{
 if count(g:vimified_packages, 'ruby')
-    Bundle 'vim-ruby/vim-ruby'
-    Bundle 'tpope/vim-rails'
-    Bundle 'nelstrom/vim-textobj-rubyblock'
-    Bundle 'ecomba/vim-ruby-refactoring'
+    Plug 'vim-ruby/vim-ruby'
+    Plug 'tpope/vim-rails'
+    Plug 'nelstrom/vim-textobj-rubyblock'
+    Plug 'ecomba/vim-ruby-refactoring'
 
     autocmd FileType ruby,eruby,yaml set tw=80 ai sw=2 sts=2 et
     autocmd FileType ruby,eruby,yaml setlocal foldmethod=manual
@@ -272,20 +272,20 @@ endif
 
 " _. Clang {{{
 if count(g:vimified_packages, 'clang')
-    Bundle 'Rip-Rip/clang_complete'
-    Bundle 'LucHermitte/clang_indexer'
-    Bundle 'newclear/lh-vim-lib'
-    Bundle 'LucHermitte/vim-clang'
+    Plug 'Rip-Rip/clang_complete'
+    Plug 'LucHermitte/clang_indexer'
+    Plug 'newclear/lh-vim-lib'
+    Plug 'LucHermitte/vim-clang'
 endif
 " }}}
 
 " _. HTML {{{
 if count(g:vimified_packages, 'html')
-    Bundle 'tpope/vim-haml'
-    Bundle 'juvenn/mustache.vim'
-    Bundle 'tpope/vim-markdown'
-    Bundle 'digitaltoad/vim-jade'
-    Bundle 'slim-template/vim-slim'
+    Plug 'tpope/vim-haml'
+    Plug 'juvenn/mustache.vim'
+    Plug 'tpope/vim-markdown'
+    Plug 'digitaltoad/vim-jade'
+    Plug 'slim-template/vim-slim'
 
     au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -298,18 +298,18 @@ endif
 
 " _. CSS {{{
 if count(g:vimified_packages, 'css')
-    Bundle 'wavded/vim-stylus'
-    Bundle 'lunaru/vim-less'
+    Plug 'wavded/vim-stylus'
+    Plug 'lunaru/vim-less'
     nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
 endif
 " }}}
 
 " _. JS {{{
 if count(g:vimified_packages, 'js')
-    Bundle 'kchmck/vim-coffee-script'
+    Plug 'kchmck/vim-coffee-script'
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-    Bundle 'alfredodeza/jacinto.vim'
+    Plug 'alfredodeza/jacinto.vim'
     au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
     au BufNewFile,BufReadPost *.coffee setl tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 endif
@@ -317,16 +317,16 @@ endif
 
 " _. Clojure {{{
 if count(g:vimified_packages, 'clojure')
-    Bundle 'guns/vim-clojure-static'
-    Bundle 'tpope/vim-fireplace'
-    Bundle 'tpope/vim-classpath'
+    Plug 'guns/vim-clojure-static'
+    Plug 'tpope/vim-fireplace'
+    Plug 'tpope/vim-classpath'
 endif
 " }}}
 
 " _. Haskell {{{
 if count(g:vimified_packages, 'haskell')
-    Bundle 'Twinside/vim-syntax-haskell-cabal'
-    Bundle 'lukerandall/haskellmode-vim'
+    Plug 'Twinside/vim-syntax-haskell-cabal'
+    Plug 'lukerandall/haskellmode-vim'
 
     au BufEnter *.hs compiler ghc
 
@@ -337,46 +337,47 @@ endif
 
 " _. Elixir {{{
 if count(g:vimified_packages, 'elixir')
-    Bundle 'elixir-lang/vim-elixir'
+    Plug 'elixir-lang/vim-elixir'
 endif
 " }}}
 
 " _. Rust {{{
 if count(g:vimified_packages, 'rust')
-    Bundle 'wting/rust.vim'
+    Plug 'wting/rust.vim'
 endif
 " }}}
 
 " _. Elm {{{
 if count(g:vimified_packages, 'elm')
-    Bundle 'lambdatoast/elm.vim'
+    Plug 'lambdatoast/elm.vim'
 endif
 " }}}
 
 " _. Color {{{
 if count(g:vimified_packages, 'color')
-    Bundle 'sjl/badwolf'
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'tomasr/molokai'
-    Bundle 'zaiste/Atom'
-    Bundle 'w0ng/vim-hybrid'
-    Bundle 'chriskempson/base16-vim'
-    Bundle 'Elive/vim-colorscheme-elive'
-    Bundle 'zeis/vim-kolor'
+    Plug 'sjl/badwolf'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'tomasr/molokai'
+    Plug 'zaiste/Atom'
+    Plug 'w0ng/vim-hybrid'
+    Plug 'chriskempson/base16-vim'
+    Plug 'Elive/vim-colorscheme-elive'
+    Plug 'zeis/vim-kolor'
 
-    " During installation the molokai colorscheme might not be avalable
-    if filereadable(globpath(&rtp, 'colors/molokai.vim'))
-      set background=dark
-      colorscheme molokai
-    else
-      colorscheme default
-    endif
 else
     colorscheme default
 endif
 " }}}
 
 " }}}
+call plug#end()
+
+" During installation the molokai colorscheme might not be avalable
+if filereadable(globpath(&rtp, 'colors/molokai.vim'))
+  colorscheme molokai
+else
+  colorscheme default
+endif
 
 " General {{{
 filetype plugin indent on
@@ -446,9 +447,9 @@ nmap <leader>wq :w!<cr>:Bclose<cr>
 
 " . abbrevs {{{
 "
-iabbrev z@ oh@zaiste.net
 
 " . }}}
+
 
 " Settings {{{
 set autoread
@@ -570,7 +571,7 @@ augroup END
 " If you want to remove trailing spaces when you want, so not automatically,
 " see
 " http://vim.wikia.com/wiki/Remove_unwanted_spaces#Display_or_remove_unwanted_whitespace_with_a_script.
-"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Removes trailing spaces
 "function TrimWhiteSpace()
@@ -578,8 +579,8 @@ augroup END
   "''
 ":endfunction
 
-nnoremap <leader>w :call TrimWhiteSpace()<CR>
-"map! <F2> :call TrimWhiteSpace()<CR>
+"nnoremap <leader>w :call TrimWhiteSpace()<CR>
+map! <F2> :call TrimWhiteSpace()<CR>
 
 
 " }}}
