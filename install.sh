@@ -30,7 +30,7 @@ fi
 
 if [ ! -d "$INSTALLDIR/.vimified" ]; then
     echo "As we can't find Vimified in the current directory, we will create it."
-    git clone git@github.com:x-y-z/vimified.git $INSTALLDIR/.vimified
+    git clone https://github.com/x-y-z/vimified.git $INSTALLDIR/.vimified
     create_symlinks
     cd $INSTALLDIR/.vimified
 
