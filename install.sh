@@ -41,22 +41,17 @@ else
     create_symlinks
 fi
 
-if [ ! -d "bundle" ]; then
-    echo "Now, we will create a separate directory to store the bundles Vim will use."
-    mkdir bundle
-    mkdir -p tmp/backup tmp/swap tmp/undo
-fi
-
 if [ ! -d "autoload" ]; then
     echo "Then, we install Vim plug (https://github.com/junegunn/vim-plug)."
 	git clone https://github.com/junegunn/vim-plug.git autoload
 	#curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 		#https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    mkdir -p tmp/backup tmp/swap tmp/undo
 fi
 
 if [ ! -f local.vimrc ]; then
   echo "Let's create a 'local.vimrc' file so you have some bundles by default."
-  echo "let g:vimified_packages = ['general', 'fancy', 'css', 'js', 'os', 'html', 'coding', 'color']" > 'local.vimrc'
+  echo "let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'color']" > 'local.vimrc'
 fi
 
 echo "There you are! Welcome in our world."
