@@ -403,10 +403,10 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " You want to be part of the gurus? Time to get in serious stuff and stop using
 " arrow keys.
-noremap <left> :bp<cr>
+noremap <left> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
-noremap <right> :bn<cr>
+noremap <right> <nop>
 
 " Yank from current cursor position to end of line
 map Y y$
@@ -641,8 +641,10 @@ noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
 
 " Easy buffer navigation
-noremap <leader>bp :bprevious<cr>
-noremap <leader>bn :bnext<cr>
+noremap <leader>j :bprevious<cr>
+noremap <leader>k :bnext<cr>
+"noremap <leader>bp :bprevious<cr>
+"noremap <leader>bn :bnext<cr>
 
 " Splits ,v and ,h to open new splits (vertical and horizontal)
 nnoremap <leader>v <C-w>v<C-w>l
