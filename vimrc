@@ -397,7 +397,7 @@ set switchbuf=useopen
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-autocmd FileType c set tabstop=4 shiftwidth=4 expandtab!
+autocmd FileType c set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 " }}}
 
 " Mappings {{{
