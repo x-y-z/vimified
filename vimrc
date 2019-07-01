@@ -67,7 +67,7 @@ if count(g:vimified_packages, 'general')
 		"!./install.py
 	"endif
 "endfunction
-	Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe'
 
 	let g:ycm_confirm_extra_conf = 0
 
@@ -242,10 +242,10 @@ endif
 
 " _. Python {{{
 if count(g:vimified_packages, 'python')
-    Plug 'klen/python-mode'
-    Plug 'python.vim'
-    Plug 'python_match.vim'
-    Plug 'pythoncomplete'
+    Plug 'python-mode/python-mode', { 'branch': 'develop'}
+    "Plug 'python.vim'
+    "Plug 'python_match.vim'
+    "Plug 'pythoncomplete'
     Plug 'jmcantrell/vim-virtualenv'
 endif
 " }}}
@@ -422,11 +422,12 @@ noremap <silent><Leader>/ :nohls<CR>
 " better ESC
 inoremap <C-k> <Esc>
 
-nmap <silent> <leader>hh :set invhlsearch<CR>
+"nmap <silent> <leader>hh :set invhlsearch<CR>
 nmap <silent> <leader>ll :set invlist<CR>
 nmap <silent> <leader>nn :set invnumber<CR>
 nmap <silent> <leader>pp :set invpaste<CR>
 nmap <silent> <leader>ii :set invrelativenumber<CR>
+nmap <silent> <leader>hh :set invnumber<CR>:set invrelativenumber<CR>:set invlist<CR>
 
 " Seriously, guys. It's not like :W is bound to anything anyway.
 command! W :w
@@ -618,10 +619,10 @@ nnoremap <silent> <leader>? :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
 " Highlight word {{{
 
-nnoremap <silent> <leader>hh :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h1 :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
+"nnoremap <silent> <leader>hh :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
+"nnoremap <silent> <leader>h1 :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
+"nnoremap <silent> <leader>h2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
+"nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
 
 " }}}
 
