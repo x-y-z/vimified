@@ -3,14 +3,17 @@
 INSTALLDIR=$HOME
 
 create_symlinks () {
-    if [ ! -f ~/.vim ]; then
-        echo "Now, we will create ~/.vim and ~/.vimrc files to configure Vim."
-        ln -sfn $INSTALLDIR/.vimified ~/.vim
+    if [ -f ~/.vim ] || [ -d ~/.vim ]; then
+        mv ~/.vim ~/.vim.backup
     fi
 
-    if [ ! -f ~/.vimrc ]; then
-        ln -sfn $INSTALLDIR/.vimified/vimrc ~/.vimrc
+    echo "Now, we will create ~/.vim and ~/.vimrc files to configure Vim."
+    ln -sfn $INSTALLDIR/.vimified ~/.vim
+
+    if [ -f ~/.vimrc ]; then
+        mv ~/.vimrc ~/.vimrc.backup
     fi
+    ln -sfn $INSTALLDIR/.vimified/vimrc ~/.vimrc
   }
 
 echo "Welcome friend!"
