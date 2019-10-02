@@ -218,13 +218,14 @@ if count(g:vimified_packages, 'coding')
     " same in visual mode
     :vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
 
-    Plug 'scrooloose/syntastic'
-    let g:syntastic_enable_signs=1
-    let g:syntastic_auto_loc_list=1
-    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
-    let g:syntastic_cpp_compiler = executable('clang++') ? 'clang++' : 'g++'
-    let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
+    "Plug 'scrooloose/syntastic'
+    "let g:syntastic_enable_signs=1
+    "let g:syntastic_auto_loc_list=1
+    "let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
+    "let g:syntastic_cpp_compiler = executable('clang++') ? 'clang++' : 'g++'
+    "let g:syntastic_cpp_compiler_options = ' -std=c++11'
+    Plug 'dense-analysis/ale'
+    "let g:ale_linters = ['flake8', 'clang']
     " --
 
     Plug 'vim-scripts/Reindent'
@@ -242,7 +243,7 @@ endif
 
 " _. Python {{{
 if count(g:vimified_packages, 'python')
-    Plug 'python-mode/python-mode', { 'branch': 'develop'}
+    "Plug 'python-mode/python-mode', { 'branch': 'develop'}
     "Plug 'python.vim'
     "Plug 'python_match.vim'
     "Plug 'pythoncomplete'
