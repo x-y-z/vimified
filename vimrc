@@ -197,8 +197,10 @@ endif
 " _. Coding {{{
 
 if count(g:vimified_packages, 'coding')
-	Plug 'Yggdroot/LeaderF'
-	nmap <leader>t :LeaderfBufTagAll<CR>
+	"Plug 'Yggdroot/LeaderF'
+	"nmap <leader>t :LeaderfBufTagAll<CR>
+    Plug 'majutsushi/tagbar'
+	nmap <leader>t :TagbarToggle<CR>
 
     Plug 'chazy/cscope_maps'
     Plug 'gregsexton/gitv'
