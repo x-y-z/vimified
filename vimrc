@@ -94,6 +94,8 @@ if count(g:vimified_packages, 'general')
     Plug 'maxbrunsfeld/vim-yankstack'
     Plug 'tpope/vim-eunuch'
 
+    Plug 'jiangmiao/auto-pairs'
+
     Plug 'scrooloose/nerdtree'
     " Disable the scrollbars (NERDTree)
     set guioptions-=r
@@ -206,7 +208,7 @@ if count(g:vimified_packages, 'coding')
     vmap <leader># :call NERDComment(0, "invert")<cr>
 
     " - Plug 'msanders/snipmate.vim'
-    Plug 'sjl/splice.vim'
+    " Plug 'sjl/splice.vim'
 
     Plug 'tpope/vim-fugitive'
     nmap <leader>gs :Gstatus<CR>
