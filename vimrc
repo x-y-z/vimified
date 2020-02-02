@@ -60,7 +60,7 @@ if count(g:vimified_packages, 'general')
     Plug 'mbbill/undotree'
     map <leader>u :UndotreeToggle<cr>
 
-	Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+	"Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 
 "function! BuildYCM(info)
 	"if a:info.status == 'installed' || a:info.force
@@ -71,11 +71,8 @@ if count(g:vimified_packages, 'general')
 
 	let g:ycm_confirm_extra_conf = 0
 
-	Plug 'rstacruz/vim-closer'
 	"Plug 'WolfgangMehner/c-support'
     "Plug 'vim-scripts/c.vim'
-    "Plug 'mileszs/ack.vim'
-    "nnoremap <leader>a :Ack!<space>
     Plug 'editorconfig/editorconfig-vim'
 
     Plug 'rking/ag.vim'
@@ -91,9 +88,9 @@ if count(g:vimified_packages, 'general')
     Plug 'tpope/vim-surround'
     let g:surround_{char2nr("c")} = "/* \r */"
     Plug 'tpope/vim-unimpaired'
-    Plug 'maxbrunsfeld/vim-yankstack'
     Plug 'tpope/vim-eunuch'
 
+	"Plug 'rstacruz/vim-closer' " conservative auto-pair
     Plug 'jiangmiao/auto-pairs'
 
     Plug 'scrooloose/nerdtree'
@@ -104,15 +101,13 @@ if count(g:vimified_packages, 'general')
     set winfixwidth
 
 
-    Plug 'kana/vim-textobj-user'
+    "Plug 'kana/vim-textobj-user'
+    "Plug 'maxbrunsfeld/vim-yankstack' " simpler YankRing
     Plug 'vim-scripts/YankRing.vim'
     let g:yankring_replace_n_pkey = '<leader>['
     let g:yankring_replace_n_nkey = '<leader>]'
     let g:yankring_history_dir = s:dotvim.'/tmp/'
     nmap <leader>y :YRShow<cr>
-
-    Plug 'michaeljsmith/vim-indent-object'
-    let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
 
     Plug 'Spaceghost/vim-matchit'
     Plug 'ctrlpvim/ctrlp.vim'
