@@ -389,12 +389,13 @@ if count(g:vimified_packages, 'coding')
     "let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'], 'passive_filetypes': ['html', 'css', 'slim'] }
     "let g:syntastic_cpp_compiler = executable('clang++') ? 'clang++' : 'g++'
     "let g:syntastic_cpp_compiler_options = ' -std=c++11'
-    Plug 'dense-analysis/ale'
-    let g:ale_linters = {
-    \    'python': ['flake8'],
-    \}
-    let g:ale_linters_explicit = 1
-    let g:airline#extensions#ale#enabled = 1
+
+    "Plug 'dense-analysis/ale'
+    "let g:ale_linters = {
+    "\    'python': ['flake8'],
+    "\}
+    "let g:ale_linters_explicit = 1
+    "let g:airline#extensions#ale#enabled = 1
     " --
 
     Plug 'vim-scripts/Reindent'
