@@ -338,6 +338,7 @@ if count(g:vimified_packages, 'coding')
     "let g:Lf_PreviewInPopup = 1
     let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
     let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+    let g:Lf_FollowLinks = 1
 
     let g:Lf_ShortcutF = "<leader>ff"
     noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
@@ -392,9 +393,9 @@ if count(g:vimified_packages, 'coding')
     nmap <leader>gac :Gcommit --amen -v<CR>
     nmap <leader>g :Ggrep
     " ,f for global git search for word under the cursor (with highlight)
-    nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
+    " nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
     " same in visual mode
-    :vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
+    " :vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
 
     "Plug 'scrooloose/syntastic'
     "let g:syntastic_enable_signs=1
