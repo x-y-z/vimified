@@ -352,6 +352,8 @@ if count(g:vimified_packages, 'coding')
     xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
     noremap go :<C-U>Leaderf! rg --recall<CR>
 
+    " store gtags in the project folder.
+    let g:Lf_GtagsStoreInProject = 1
     " should use `Leaderf gtags --update` first
     let g:Lf_GtagsAutoGenerate = 0
     let g:Lf_Gtagslabel = 'native-pygments'
