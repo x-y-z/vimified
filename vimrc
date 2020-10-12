@@ -60,6 +60,9 @@ if count(g:vimified_packages, 'general')
     Plug 'mbbill/undotree'
     map <leader>u :UndotreeToggle<cr>
 
+    Plug 'skywind3000/asyncrun.vim'
+    let g:asyncrun_open = 8
+
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 
