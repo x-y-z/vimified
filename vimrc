@@ -289,6 +289,8 @@ if count(g:vimified_packages, 'general')
 	let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m', 'minibufexpl', 'nerdtree']
 	nnoremap <F3> :NumbersToggle<CR>
 
+    Plug 'chrisbra/csv.vim'
+
 endif
 " }}}
 
