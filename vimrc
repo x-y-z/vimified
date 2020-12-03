@@ -65,7 +65,19 @@ if count(g:vimified_packages, 'general')
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    Plug 't9md/vim-quickhl'
+    nmap <Space>m <Plug>(quickhl-manual-this)
+    xmap <Space>m <Plug>(quickhl-manual-this)
 
+    nmap <Space>w <Plug>(quickhl-manual-this-whole-word)
+    xmap <Space>w <Plug>(quickhl-manual-this-whole-word)
+
+    nmap <Space>j <Plug>(quickhl-cword-toggle)
+    nmap <Space>] <Plug>(quickhl-tag-toggle)
+    map H <Plug>(operator-quickhl-manual-this-motion)
+
+
+    " let g:coc_disable_startup_warning = 1
     " Some servers have issues with backup files, see #649.
     set nobackup
     set nowritebackup
@@ -187,21 +199,21 @@ if count(g:vimified_packages, 'general')
 
     " Mappings using CoCList:
     " Show all diagnostics.
-    nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+    " nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
     " Manage extensions.
-    nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+    " nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
     " Show commands.
-    nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+    " nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
     " Find symbol of current document.
-    nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+    " nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
     " Search workspace symbols.
-    nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+    " nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
     " Do default action for next item.
-    nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+    " nnoremap <silent> <space>j  :<C-u>CocNext<CR>
     " Do default action for previous item.
-    nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+    " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
     " Resume latest coc list.
-    nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+    " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
     "Plug 'Valloric/YouCompleteMe'
@@ -290,6 +302,8 @@ if count(g:vimified_packages, 'general')
 	nnoremap <F3> :NumbersToggle<CR>
 
     Plug 'chrisbra/csv.vim'
+    let g:csv_autocmd_arrange = 1
+    let g:csv_autocmd_arrange_size = 1024*1024
 
 endif
 " }}}
@@ -360,7 +374,7 @@ if count(g:vimified_packages, 'coding')
     " store gtags in the project folder.
     let g:Lf_GtagsStoreInProject = 1
     " should use `Leaderf gtags --update` first
-    let g:Lf_GtagsAutoGenerate = 0
+    let g:Lf_GtagsAutoGenerate = 1
     let g:Lf_Gtagslabel = 'native-pygments'
     noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
     noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
