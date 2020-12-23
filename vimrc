@@ -63,8 +63,6 @@ if count(g:vimified_packages, 'general')
     Plug 'skywind3000/asyncrun.vim'
     let g:asyncrun_open = 8
 
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
     Plug 't9md/vim-quickhl'
     nmap <Space>m <Plug>(quickhl-manual-this)
     xmap <Space>m <Plug>(quickhl-manual-this)
@@ -77,6 +75,7 @@ if count(g:vimified_packages, 'general')
     map H <Plug>(operator-quickhl-manual-this-motion)
 
 
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " let g:coc_disable_startup_warning = 1
     " Some servers have issues with backup files, see #649.
     set nobackup
