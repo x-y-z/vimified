@@ -778,16 +778,16 @@ augroup END
 " If you want to remove trailing spaces when you want, so not automatically,
 " see
 " http://vim.wikia.com/wiki/Remove_unwanted_spaces#Display_or_remove_unwanted_whitespace_with_a_script.
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 " Removes trailing spaces
-"function TrimWhiteSpace()
-  "%s/\s*$//
-  "''
-":endfunction
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+:endfunction
 
-"nnoremap <leader>w :call TrimWhiteSpace()<CR>
-map! <F2> :call TrimWhiteSpace()<CR>
+nnoremap <leader>w :call TrimWhiteSpace()<CR>
+" map! <F2> :call TrimWhiteSpace()<CR>
 
 
 " }}}
