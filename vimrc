@@ -373,7 +373,7 @@ if count(g:vimified_packages, 'coding')
     " store gtags in the project folder.
     let g:Lf_GtagsStoreInProject = 1
     " should use `Leaderf gtags --update` first
-    let g:Lf_GtagsAutoGenerate = 1
+    let g:Lf_GtagsAutoGenerate = 0
     let g:Lf_Gtagslabel = 'native-pygments'
     noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
     noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
